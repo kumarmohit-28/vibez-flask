@@ -1,0 +1,8 @@
+create database vibez;
+use vibez;
+CREATE TABLE if not exists users(username VARCHAR(255) NOT NULL PRIMARY KEY, email VARCHAR(255),password VARCHAR(255),name VARCHAR(255));
+
+CREATE TABLE if not exists followers(id int not null auto_increment primary key ,usern VARCHAR(255) NOT NULL, followern VARCHAR(255) NOT NULL, FOREIGN KEY (usern) REFERENCES users(username),FOREIGN KEY (followern) REFERENCES users(username));
+
+CREATE TABLE if not exists followings(id int not null auto_increment primary key ,usern VARCHAR(255) NOT NULL, followern VARCHAR(255) NOT NULL, FOREIGN KEY (usern) REFERENCES users(username),FOREIGN KEY (followern) REFERENCES users(username));
+CREATE TABLE if not exists post(id int not null auto_increment primary key ,username VARCHAR(255) NOT NULL,description VARCHAR(255) NOT NULL,filelink VARCHAR(255) NOT NULL, FOREIGN KEY (username) REFERENCES users(username));
