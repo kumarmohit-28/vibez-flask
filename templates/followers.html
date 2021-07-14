@@ -1,0 +1,74 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+
+<div class="col-lg-6">
+    <div class="central-meta">
+        <div class="frnds">
+            <ul class="nav nav-tabs">
+                 <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Followers</a> <span>{{foll|length}}</span></li>
+                 <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Followings</a><span>{{follwing|length}}</span></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active fade show " id="frends" >
+                <ul class="nearby-contct">
+                {% for key, value in foll.items() %}
+                <li>
+                    {% set glob={} %}
+
+                {% for key1, value1 in follwing.items() %}
+                    {% if key1|lower == key|lower %}
+                        {% set _ = glob.update({'disabled':True}) %}
+                    {%endif%}
+                {%endfor%}
+                    <div class="nearly-pepls">
+
+                        <figure>
+                            <a href="time-line.html" title=""><img src="static/images/resources/friend-avatar9.jpg" alt=""></a>
+                        </figure>
+                        <div class="pepl-info">
+                            <h4><a href="/profile/{{key}}" title="">{{value}}</a></h4>
+                            <span>{{key}}</span>
+                            {% if items[0]|lower == session.username|lower %}
+                            {% if glob.disabled %}
+                            <a href="/unfollow/{{key}}" title="" class="add-butn more-action" data-ripple="">Unfollow</a>
+                            {%else%}
+                            <a href="/follow/{{key}}" title="" class="add-butn" data-ripple="">Follow</a>
+                            {%endif%}
+                            {%endif%}
+                            
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+                
+              </div>
+              <div class="tab-pane fade" id="frends-req" >
+                <ul class="nearby-contct">
+                    {% for key, value in follwing.items() %}
+                    <li>
+                        <div class="nearly-pepls">
+                            <figure>
+                                <a href="time-line.html" title=""><img src="static/images/resources/friend-avatar9.jpg" alt=""></a>
+                            </figure>
+                            <div class="pepl-info">
+                                <h4><a href="/profile/{{key}}" title="">{{value}}</a></h4>
+                                <span>{{key}}</span>
+                                {% if items[0]|lower == session.username|lower %}
+                                <a href="/unfollow/{{key}}" title="" class="add-butn more-action" data-ripple="">Unfollow</a>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+            </ul>	
+                  
+              </div>
+            </div>
+        </div>
+    </div>	
+</div>
+{% endblock %}

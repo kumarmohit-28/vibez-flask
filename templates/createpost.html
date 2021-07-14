@@ -1,0 +1,32 @@
+{% extends 'layout2.html' %}
+
+{% block body %}
+<div class="col-lg-6">
+<div class="central-meta">
+    <div class="new-postbox">
+        <figure>
+            <img src="static/images/resources/admin2.jpg" alt="">
+        </figure>
+        <div class="newpst-input">
+            <form method="post"  enctype="multipart/form-data">
+                <textarea rows="2" placeholder="write something" name="des"></textarea>
+                <div class="attachments">
+                    <ul>
+                        <li>
+                            <i class="fa fa-image"></i>
+                            <label class="fileContainer">
+                                <input type="file" name="file">
+                            </label>
+                        </li>
+                        
+                        <li>
+                            <button type="submit">Post</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
